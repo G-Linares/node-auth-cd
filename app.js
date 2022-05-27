@@ -1,12 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import {username, password} from './info.js'
 import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
 
 import mainRoutes from './routes/mainRoutes.js'
 
 const app = express();
+
+dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -16,9 +18,8 @@ app.use(cors());
 
 app.use('/api', mainRoutes);
 
-
 const CONNECTION_URL =
-  `mongodb+srv://${username}:${password}@mern.yktji.mongodb.net/myFirstDatabase?retryWrites=true`
+  `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@${process.env.MONGO_CLUSTER_NAME}.yktji.mongodb.net/${process.env.MONGO_COLLECTION_NAME}?retryWrites=true`
 
 const PORT = process.env.PORT || 5000;
 
