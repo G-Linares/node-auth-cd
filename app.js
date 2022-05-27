@@ -4,9 +4,6 @@ import cors from "cors";
 import {username, password} from './info.js'
 import cookieParser from 'cookie-parser';
 
-
-//aqui importo el sistema de ruteo 
-
 import mainRoutes from './routes/mainRoutes.js'
 
 const app = express();
@@ -15,12 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser())
-
-//enabilito el CORS para problemas de puertos
 app.use(cors());
-
-// aqui tienes que hacer tu base de datos cloud.mongodb.com
-// variable de contrasenia de prefencia en archivo .ENV
 
 app.use('/api', mainRoutes);
 
@@ -28,10 +20,8 @@ app.use('/api', mainRoutes);
 const CONNECTION_URL =
   `mongodb+srv://${username}:${password}@mern.yktji.mongodb.net/myFirstDatabase?retryWrites=true`
 
-//puerto donde se va a contruir
 const PORT = process.env.PORT || 5000;
 
-//inicializo la base de datos y si se puede conectar corre servidor
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() =>

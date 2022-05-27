@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
 
   res.cookie("jwt", token, {
     httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000 // 1 day
+    maxAge: 24 * 60 * 60 * 1000 // 1 dia
   });
 
   res.send({
@@ -73,7 +73,7 @@ router.get("/userInfo", async (req, res) => {
     }
 
     const user = await UserData.findOne({ _id: claims._id });
-    //solo lohago para no mostrar la password
+    //solo lo hago para no mostrar la password
     const { password, ...data } = await user.toJSON();
 
     res.send(data);
