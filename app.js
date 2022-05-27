@@ -1,8 +1,8 @@
 import express from "express";
-import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import {username, password} from './info.js'
+import cookieParser from 'cookie-parser';
 
 
 //aqui importo el sistema de ruteo 
@@ -13,6 +13,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(cookieParser())
 
 //enabilito el CORS para problemas de puertos
 app.use(cors());
